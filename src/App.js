@@ -4,6 +4,7 @@ import { Button, Form, Container, Header } from 'semantic-ui-react';
 import axios from 'axios';
 import './App.css';
 import ExcelData from './exceldata';
+import Footer from './Footer';
  
 
 export default class App extends Component {
@@ -79,7 +80,9 @@ export default class App extends Component {
       </Container>
 
       
-        
+        <div>
+          <Footer />
+        </div>
       
         
       </div>
