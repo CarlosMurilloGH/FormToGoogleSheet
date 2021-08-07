@@ -28,11 +28,28 @@ export default class App extends Component {
   submitHandler = e => {
     e.preventDefault();
     console.log(this.state);
+    
 
     axios.post('https://sheet.best/api/sheets/952adab9-c60d-4d56-945f-4d550147cfbd', this.state)
     .then(response => {
       console.log(response);
-    })
+    });
+
+   
+    this.setState({
+        Nombre: '',
+        Especialidad: '',
+        Contacto1: '',
+        Contacto2: '',
+        Portafolio: '',
+        Web: '',
+     } );
+    
+     
+      window.location.reload();
+     
+    
+    
     
   };
 
