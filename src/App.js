@@ -33,6 +33,9 @@ export default class App extends Component {
     .then(response => {
       console.log(response);
     })
+    .then(
+      window.location.reload(false)
+    )
     
   };
 
