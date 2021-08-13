@@ -74,7 +74,7 @@ export default class App extends Component {
           </Form.Field>
           <Form.Field>
             <label>Contacto1</label>
-            <input placeholder='¿Cómo podemos contactarte?' type="text" name = "Contacto1" value = {Contacto1} onChange={this.changeHandler}/>
+            <input placeholder='Ingresa tu Celular sin espacios o +' type="text" name = "Contacto1" value = {Contacto1} onChange={this.changeHandler}/>
           </Form.Field>
           <Form.Field>
             <label>Contacto2</label>
