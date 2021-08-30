@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import 'semantic-ui-css/semantic.min.css';
 import './exceldata.css';
 
 function ExcelData() {
@@ -19,54 +20,53 @@ function ExcelData() {
   },[]);
 
   return (
-    <div className="container">
+    <div className="containerdata">
    
     <div className="mapdata">
         {data?.map((item,i)=>(
-            <div className="contenedordatos" key={i}>
-
-                <div className="datos">
-                    
-                    <div className="item" >
-                        {item.Nombre}
-                    </div>
-
-                    <div className="item">
-                        {item.Especialidad}
-                    </div>
-
-                    <div className="item">
-                        {item.Contacto1}
-                    </div>
-
-                    <div className="item">
-                        {item.Contacto2}
-                    </div>
-
-                    <div className="item">
-                        <a href={item.Portafolio} target="_blank" rel="noreferrer">
-                            {item.Portafolio}
-                        </a>                               
-                    </div>
-
-                    <div className="item">
-                        <a href={item.Web} target="_blank" rel="noreferrer">
-                            {item.Web}
-                        </a>
-                    </div>
-                    
+          <div class="ui cards" key={i}>
+            <div class="ui centered card">
+              <div class="content">
+                
+                <div class="header">
+                  {item.Nombre}
                 </div>
 
+                  <div class="meta">
+                    {item.Especialidad}
+                  </div>
 
+                  <div class="description">
+                    {item.Contacto1}
+                  </div>
 
-                </div>
+                  <div class="description">                    
+                    <a href={item.Portafolio} target="_blank" rel="noreferrer">
+                      {item.Portafolio}
+                    </a>
+                  </div>
+
+                  <div class="description">
+                    <a href={item.Web} target="_blank" rel="noreferrer">
+                      {item.Web}
+                    </a>
+                  </div>
+                    
+              </div>
+                    
+            </div>
+        </div>
         ))}
+      </div>
+     
       </div>
      
         
 
-    </div>
+    
   );
 }
 
 export default ExcelData;
+
+

@@ -1,80 +1,27 @@
-*{
-    font-family: 'Segoe UI';
+.containerdata{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: 30px;
+    margin-right: 30px;
 }
-.container{
-    margin-left: 50px;
-    margin-right: 50px;
-    margin-top:50px;
-    font-size: 20px;
-  }
-
-.caja{
-    padding:20px;
-    display:flex;
-    width: 90%;
-    
-}
-
 
 .mapdata{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr ;
+    grid-template-columns: repeat(3, 1fr);
 }
 
-.datos{
-margin-left: 20px;
-margin-right: 20px;
-margin-bottom: 30px;
-padding-left:15px;
-padding-right:15px;
-padding-bottom:15px; 
-padding-top: 10px;
-border-radius:10px; 
-
-box-shadow: 1px 7px 26px 3px rgba(0, 0, 0, 0.08); 
-}
-.item{
-    margin-bottom: 10px;
-    
-    
-}
-@media screen and (max-width: 1220px) {
-.caja {
-    display: inline-block;
-    margin-right: auto;
-    margin-left: auto;
-    width: 80%;
-}
+.content {
+    overflow: hidden;
 }
 
-@media screen and (max-width: 760px) {
-    .caja {
-        display:inline-flexbox;
-        overflow-wrap: break-word;
-        margin-left: auto;
-        margin-right: auto;
-        text-align: center;
-        font-size: 14px;
-        width: 100%;
-    }
-    .container{
-        margin-left: auto;
-        margin-right: auto;
-        margin-bottom: 30px;
-        
-    }
-    .datos{
-        width: 100%;
-        margin-left: auto;
-        margin-right: auto;
-        padding: 10px;
-        margin-bottom: 20px;
-    }
-    }
-
-@media screen and (max-width: 760px) {
+@media (max-device-width: 1000px){
     .mapdata{
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr ;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-device-width: 690px){
+    .mapdata{
+        grid-template-columns: repeat(1, 1fr);
     }
 }
