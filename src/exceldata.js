@@ -1,65 +1,69 @@
 import React, { useEffect, useState } from "react";
-import Tabletop from "tabletop";
 import './exceldata.css';
 
 function ExcelData() {
-  const [data, setData] = useState({});
-  useEffect(() => {
-    Tabletop.init({
-      key: "1AYDXN9DfgwKYZSVCb71FY8e4jodsyzRVDLQKk_W6YwQ",
-      simpleSheet: true,
-    }).then(function (data) {
+    const [data,setData] =useState();
+  const getData=async() =>{
+    try {
+      const res= await fetch("https://sheet.best/api/sheets/952adab9-c60d-4d56-945f-4d550147cfbd");     
+    
+      const data= await res.json();
       setData(data);
-    });
-  }, []);
-  const datos = Array.from(data);  
+    } catch(error){
+      console.log(error);
+    }
+  };
+
+  useEffect(()=>{
+    getData();
+  },[]);
+
   return (
-      <div className="container">
+    <div className="container">
+   
+    <div className="mapdata">
+        {data?.map((item,i)=>(
+            <div className="contenedordatos" key={i}>
 
-        <div className="caja">
-            {
-                datos.map((el) =>(
-                    <div className="contenedordatos">
+                <div className="datos">
+                    
+                    <div className="item" >
+                        {item.Nombre}
+                    </div>
 
-                        <div className="datos" key={el.Nombre}>
-                            
-                            <div className="item" >
-                                {el.Nombre}
-                            </div>
+                    <div className="item">
+                        {item.Especialidad}
+                    </div>
 
-                            <div className="item">
-                                {el.Especialidad}
-                            </div>
+                    <div className="item">
+                        {item.Contacto1}
+                    </div>
 
-                            <div className="item">
-                                {el.Contacto1}
-                            </div>
+                    <div className="item">
+                        {item.Contacto2}
+                    </div>
 
-                            <div className="item">
-                                {el.Contacto2}
-                            </div>
+                    <div className="item">
+                        <a href={item.Portafolio} target="_blank" rel="noreferrer">
+                            {item.Portafolio}
+                        </a>                               
+                    </div>
 
-                            <div className="item">
-                                <a href={el.Portafolio} target="_blank" rel="noreferrer">
-                                    {el.Portafolio}
-                                </a>                               
-                            </div>
-
-                            <div className="item">
-                                <a href={el.Web} target="_blank" rel="noreferrer">
-                                    {el.Web}
-                                </a>
-                            </div>
-                            
-                        </div>
-
-                        
-
+                    <div className="item">
+                        <a href={item.Web} target="_blank" rel="noreferrer">
+                            {item.Web}
+                        </a>
                     </div>
                     
-                ))
-            }
-        </div>
+                </div>
+
+
+
+                </div>
+        ))}
+      </div>
+     
+        
 
     </div>
   );

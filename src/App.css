@@ -1,4 +1,8 @@
 
+*{
+  font-family: 'Segoe UI';
+}
+
 .form{
   width: 350px; 
   text-align: left;
@@ -14,12 +18,12 @@
   box-shadow: 1px 7px 26px 3px rgba(0, 0, 0, 0.12);
 }
 
-.container{
-  padding:20px;
-  display: flexbox;
-  margin-left: auto;
-  margin-right: auto;
+.title h1{
   text-align: center;
-  
-
 }
+
+
+.container h1{
+  margin-bottom: 20px;
+}
+

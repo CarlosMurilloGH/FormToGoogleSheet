@@ -1,110 +1,98 @@
+import { useState } from "react";
 import 'semantic-ui-css/semantic.min.css';
-import React, { Component } from 'react';
-import { Button, Form, Container, Header } from 'semantic-ui-react';
-import axios from 'axios';
-import './App.css';
-import ExcelData from './exceldata';
-import Footer from './Footer';
- 
+import { Button, Form} from 'semantic-ui-react';
+import "./App.css";
+import Exceldata from './exceldata';
+import Footer from "./Footer";
 
-export default class App extends Component {
-  constructor(props) {
-    super(props)
+function App () {
   
-    this.state = {
-       Nombre: '',
-       Especialidad: '',
-       Contacto1: '',
-       Contacto2: '',
-       Portafolio: '',
-       Web: '',
-    }
-  }
+  const [data, setData] = useState({
+    Nombre: "",
+    Especialidad: "",
+    Contacto1: "",
+    Contacto2: "",
+    Portafolio: "",
+    Web: "",
+    
+  });
 
-  changeHandler = (e) => {
-    this.setState({[e.target.name] : e.target.value})
-  }
+  const handleChange = (e) =>
+    setData({ ...data, [e.target.name]: e.target.value });
 
-  submitHandler = e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(this.state);
-    
-
-    axios.post('https://sheet.best/api/sheets/952adab9-c60d-4d56-945f-4d550147cfbd', this.state)
-    .then(response => {
-      console.log(response);
-    });
-
-   
-    this.setState({
-        Nombre: '',
-        Especialidad: '',
-        Contacto1: '',
-        Contacto2: '',
-        Portafolio: '',
-        Web: '',
-     } );
-    
+    try {
+        await fetch(
+        "https://sheet.best/api/sheets/952adab9-c60d-4d56-945f-4d550147cfbd",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      );
      
-      window.location.reload();
-     
-    
-    
-    
+    } catch (error) {
+      console.log(error);
+    }
+    window.location.reload();
   };
-
-  
-
-  
-  
-  render() {
-    const { Nombre, Especialidad, Contacto1, Contacto2, Portafolio, Web } = this.state;    
-    return (
-      <div>
-      <Container fluid className="container">
-        <Header as='h2'>Directorio de especialistas en CM Freelance Perú</Header>
-        <Form className="form" onSubmit={this.submitHandler}>
-          <Form.Field>
-            <label>Nombre</label>
-            <input placeholder='Ingresa tu nombre completo' type="text" name = "Nombre" value = {Nombre} onChange={this.changeHandler}/>
-          </Form.Field>
-          <Form.Field>
-            <label>Especialidad</label>
-            <input placeholder='Ingresa tus especialidades' type="text" name = "Especialidad" value = {Especialidad} onChange={this.changeHandler}/>
-          </Form.Field>
-          <Form.Field>
-            <label>Contacto1</label>
-            <input placeholder='Ingresa tu Celular sin espacios o +' type="text" name = "Contacto1" value = {Contacto1} onChange={this.changeHandler}/>
-          </Form.Field>
-          <Form.Field>
-            <label>Contacto2</label>
-            <input placeholder='¿Hay alguna otra forma de contactarte?' type="text" name = "Contacto2" value = {Contacto2} onChange={this.changeHandler}/>
-          </Form.Field>
-          <Form.Field>
-            <label>Portafolio</label>
-            <input placeholder='Ingresa tu portafolio' type="text" name = "Portafolio" value = {Portafolio} onChange={this.changeHandler}/>
-          </Form.Field>
-          <Form.Field>
-            <label>Web</label>
-            <input placeholder='Ingresa tu web' type="text" name = "Web" value = {Web} onChange={this.changeHandler}/>
-          </Form.Field>
-          
-          <Button color="blue" type='submit'>Enviar</Button>
-        </Form>
-
-        <ExcelData />
-        
-      </Container>
-
-      
-        <div>
-          <Footer />
+  return (
+      <div className="container">
+        <div className="title">
+          <h1>Directorio de especialistas en CM Freelance Perú</h1>
         </div>
-      
-        
+        <div className="formcontainer">
+
+          <Form className="form" onSubmit={handleSubmit}>
+
+              <Form.Field>
+                <label>Nombre</label>
+                <input placeholder='Ingresa tu nombre completo' type="text" name = "Nombre" value = {data.Nombre} onChange={handleChange}/>
+              </Form.Field>
+
+              <Form.Field>
+                <label>Especialidad</label>
+                <input placeholder='Ingresa tus especialidades' type="text" name = "Especialidad" value = {data.Especialidad} onChange={handleChange}/>
+              </Form.Field>
+
+              <Form.Field>
+                <label>Contacto1</label>
+                <input placeholder='Ingresa tu Celular sin espacios o +' type="text" name = "Contacto1" value = {data.Contacto1} onChange={handleChange}/>
+              </Form.Field>
+
+              <Form.Field>
+                <label>Contacto2</label>
+                <input placeholder='¿Hay alguna otra forma de contactarte?' type="text" name = "Contacto2" value = {data.Contacto2} onChange={handleChange}/>
+              </Form.Field>
+
+              <Form.Field>
+                <label>Portafolio</label>
+                <input placeholder='Ingresa tu portafolio' type="text" name = "Portafolio" value = {data.Portafolio} onChange={handleChange}/>
+              </Form.Field>
+
+              <Form.Field>
+                <label>Web</label>
+                <input placeholder='Ingresa tu web' type="text" name = "Web" value = {data.Web} onChange={handleChange}/>
+              </Form.Field>
+
+              <Button color="blue" type='submit'>Enviar</Button>
+          </Form>
+
+      </div> 
+          
+      <div>
+          <Exceldata />
       </div>
 
+      <div>
+      <Footer />
+      </div>
 
-    )
-  }
-}
+    </div>
+  );
+};
+
+export default App;

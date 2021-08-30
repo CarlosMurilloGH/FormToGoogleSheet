@@ -1,6 +1,10 @@
+*{
+    font-family: 'Segoe UI';
+}
 .container{
     margin-left: 50px;
     margin-right: 50px;
+    margin-top:50px;
     font-size: 20px;
   }
 
@@ -10,9 +14,11 @@
     width: 90%;
     
 }
-.contenedordatos{
-    margin-left: auto;
-    margin-right: auto;
+
+
+.mapdata{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr ;
 }
 
 .datos{
@@ -54,6 +60,8 @@ box-shadow: 1px 7px 26px 3px rgba(0, 0, 0, 0.08);
     .container{
         margin-left: auto;
         margin-right: auto;
+        margin-bottom: 30px;
+        
     }
     .datos{
         width: 100%;
@@ -64,3 +72,9 @@ box-shadow: 1px 7px 26px 3px rgba(0, 0, 0, 0.08);
     }
     }
 
+@media screen and (max-width: 760px) {
+    .mapdata{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr ;
+    }
+}
